@@ -13,8 +13,14 @@ export const SchoolLogo: React.FC<SchoolLogoProps> = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
+  const isOfficialLogo =
+    !logoUrl ||
+    logoUrl === '/school-logo.svg' ||
+    logoUrl === './school-logo.svg' ||
+    logoUrl.endsWith('school-logo.svg');
+
   // If a custom or provided URL is given and has not errored, render it as an image
-  if (logoUrl && !hasError) {
+  if (logoUrl && !isOfficialLogo && !hasError) {
     return (
       <img
         src={logoUrl}
