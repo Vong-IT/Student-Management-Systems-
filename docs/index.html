@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Defensive shim for environments where window.fetch has only a getter
+      (function() {
+        // 1. Intercept any uncaught errors about fetch having only a getter
+        try {
+          window.addEventListener('error', function(event) {
+            if (event && event.message && typeof event.message === 'string' &&
+                event.message.indexOf('fetch') !== -1 && event.message.indexOf('getter') !== -1) {
+              if (typeof event.preventDefault === 'function') event.preventDefault();
+              if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+              return true;
+            }
+          }, true);
+        } catch (e) {}
+
+        // 2. Ensure fetch has a setter on window and its prototype chain
+        try {
+          var activeFetch = window.fetch;
+
+          function patchTarget(target) {
+            if (!target) return;
+            try {
+              var desc = Object.getOwnPropertyDescriptor(target, 'fetch');
+              if (desc) {
+                if (desc.get && !desc.set) {
+                  Object.defineProperty(target, 'fetch', {
+                    get: function() { return activeFetch; },
+                    set: function(fn) { activeFetch = fn; },
+                    configurable: true,
+                    enumerable: desc.enumerable !== false
+                  });
+                } else if (!desc.writable && !desc.set && desc.configurable) {
+                  Object.defineProperty(target, 'fetch', {
+                    value: activeFetch,
+                    writable: true,
+                    configurable: true,
+                    enumerable: desc.enumerable !== false
+                  });
+                }
+              }
+            } catch (err) {}
+          }
+
+          var curr = window;
+          while (curr) {
+            patchTarget(curr);
+            curr = Object.getPrototypeOf(curr);
+          }
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            patchTarget(Window.prototype);
+          }
+
+          try {
+            var winDesc = Object.getOwnPropertyDescriptor(window, 'fetch');
+            if (!winDesc || (winDesc.get && !winDesc.set) || !winDesc.writable) {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return activeFetch; },
+                set: function(fn) { activeFetch = fn; },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e1) {
+            try {
+              Object.defineProperty(window, 'fetch', {
+                value: activeFetch,
+                writable: true,
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e2) {}
+          }
+        } catch (err) {}
+      })();
+    </script>
+    <title>ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស - វិទ្យាល័យម៉ាឡៃ</title>
+    <meta name="description" content="ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស គ្រូបន្ទុកថ្នាក់ ពិន្ទុ និងលទ្ធផលសិក្សា វិទ្យាល័យម៉ាឡៃ អាចបោះពុម្ពប័ណ្ណសម្គាល់ខ្លួនសិស្ស (ID Card Labels) ទាញទិន្នន័យជាទម្រង់ PDF, Excel, Word និងសមកាលកម្មជាមួយ Google Sheets" />
+    <meta property="og:title" content="ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស - វិទ្យាល័យម៉ាឡៃ" />
+    <meta property="og:description" content="ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស គ្រូបន្ទុកថ្នាក់ ពិន្ទុ និងលទ្ធផលសិក្សា វិទ្យាល័យម៉ាឡៃ អាចបោះពុម្ពប័ណ្ណសម្គាល់ខ្លួនសិស្ស (ID Card Labels) ទាញទិន្នន័យជាទម្រង់ PDF, Excel, Word និងសមកាលកម្មជាមួយ Google Sheets" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="./school-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300..700;1,300..700&family=Moul&family=Siemreap&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="./assets/index-DYyfJGgC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DliO1iQ0.css">
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased font-khmer">
+    <div id="root"></div>
+  </body>
+</html>
+
