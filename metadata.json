@@ -1,0 +1,6 @@
+{
+  "name": "ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស - វិទ្យាល័យម៉ាឡៃ",
+  "description": "ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស គ្រូបន្ទុកថ្នាក់ ពិន្ទុ និងលទ្ធផលសិក្សា វិទ្យាល័យម៉ាឡៃ អាចបោះពុម្ពប័ណ្ណសម្គាល់ខ្លួនសិស្ស (ID Card Labels) ទាញទិន្នន័យជាទម្រង់ PDF, Excel, Word និងសមកាលកម្មជាមួយ Google Sheets",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

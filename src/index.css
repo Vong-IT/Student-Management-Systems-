@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Kantumruy Pro', 'Siemreap', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-moul {
+  font-family: 'Moul', serif;
+}
+
+.font-khmer {
+  font-family: 'Kantumruy Pro', 'Siemreap', system-ui, sans-serif;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print,
+  .print\:hidden,
+  [data-no-print="true"] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  /* Make sure modal content expands completely across pages without clipping */
+  .fixed.inset-0:has(#student-transcript-print),
+  .fixed.inset-0:has(#student-dossier-print),
+  .fixed.inset-0:has(#printable-student-list),
+  .fixed.inset-0:has(#printable-results),
+  .fixed.inset-0:has([data-printable="true"]) {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: none !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .fixed.inset-0:has(#student-transcript-print) > div,
+  .fixed.inset-0:has(#student-dossier-print) > div,
+  .fixed.inset-0:has(#printable-student-list) > div,
+  .fixed.inset-0:has(#printable-results) > div,
+  .fixed.inset-0:has([data-printable="true"]) > div {
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* When printing a modal, hide background app containers */
+  body:has(#student-transcript-print) #root > div > .flex-1 > main,
+  body:has(#student-dossier-print) #root > div > .flex-1 > main,
+  body:has(#printable-student-list) #root > div > .flex-1 > main,
+  body:has(#printable-student-id-cards) #root > div > .flex-1 > main,
+  body:has(#student-transcript-print) #root > div > div.no-print,
+  body:has(#student-dossier-print) #root > div > div.no-print,
+  body:has(#printable-student-list) #root > div > div.no-print,
+  body:has(#printable-student-id-cards) #root > div > div.no-print {
+    display: none !important;
+  }
+
+  /* Ensure tables format cleanly */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  th, td {
+    border-color: #334155 !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm 10mm 12mm 10mm;
+  }
+
+  @page landscape-page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+}
+
