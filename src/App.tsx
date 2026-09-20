@@ -130,7 +130,7 @@ export default function App() {
           location: parsed.location || 'វិ.ម៉ាឡៃ',
           academicYear: parsed.academicYear || '២០២៦ - ២០២៧',
           principals: parsed.principals && parsed.principals.length > 0 ? parsed.principals : INITIAL_PRINCIPALS,
-          logoUrl: parsed.logoUrl || DEFAULT_SCHOOL_SETTINGS.logoUrl || '/school-logo.svg',
+          logoUrl: parsed.logoUrl || DEFAULT_SCHOOL_SETTINGS.logoUrl || './school-logo.svg',
         };
         // sync active principal name
         const active = merged.principals?.find(p => p.isCurrent);

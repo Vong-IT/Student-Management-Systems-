@@ -76,7 +76,7 @@ export const DEFAULT_SCHOOL_SETTINGS: SchoolSettings = {
   principals: INITIAL_PRINCIPALS,
   location: 'វិ.ម៉ាឡៃ',
   issuedDate: 'ថ្ងៃទី ២៥ ខែ ឧសភា ឆ្នាំ ២០២៦',
-  logoUrl: '/school-logo.svg',
+  logoUrl: './school-logo.svg',
   schoolDescription:
     'គ្រប់គ្រងទិន្នន័យសិស្ស គ្រូបន្ទុកថ្នាក់ កត់ត្រាពិន្ទុតាមមុខវិជ្ជាពីថ្នាក់ទី៧ ដល់ទី១២ ព្រមទាំងទាញចេញជាទម្រង់ Word, Excel និង PDF តាមបទដ្ឋានក្រសួងអប់រំ យុវជន និងកីឡា។',
 };
